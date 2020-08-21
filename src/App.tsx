@@ -1,16 +1,16 @@
 import React from 'react';
-
-import { Container } from 'semantic-ui-react'
-
+import { Menu } from 'semantic-ui-react'
 
 export class App extends React.Component {
   render() {
     return (
-      <Container>
-        learn react
-      </Container>
-
-
+      <div className={'menu'}>
+        <Menu color={'black'} stackable={true} inverted>
+          <Menu.Item
+            name='home'
+          />
+        </Menu>
+      </div>
     )
   }
 }
