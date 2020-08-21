@@ -7,6 +7,9 @@
         "esnext"
       ],
       "allowJs": true,
+      "outDir": "./dist",
+      "rootDir": "./src" ,
+      "experimentalDecorators": true,   
       "skipLibCheck": true,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
@@ -20,7 +23,8 @@
       "jsx": "react"
     },
     "include": [
-      "src"
+      "src/**/*",
+      "index.d.ts"
     ]
   }
   
