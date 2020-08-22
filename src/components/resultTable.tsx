@@ -1,21 +1,23 @@
 import React from 'react';
-import {  Table } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 
 export class ResultTable extends React.Component {
-    render() {
-        return (
-            <Table color={'teal'} >
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Exercicio</Table.HeaderCell>
-                <Table.HeaderCell>Tempo</Table.HeaderCell>
-                <Table.HeaderCell>Data</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-          </Table>
-        )
-    }
+  render() {
+    return (
+      <Table color={'teal'} >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Exercicio</Table.HeaderCell>
+            <Table.HeaderCell>Tempo</Table.HeaderCell>
+            <Table.HeaderCell>Data</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Footer >       
+        </Table.Footer>
+      </Table>
+    )
+  }
 }
 
 export default ResultTable;
