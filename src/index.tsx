@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
+import { Workout } from './container/workout';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Workout />
   </React.StrictMode>,
   document.getElementById('root')
 );
