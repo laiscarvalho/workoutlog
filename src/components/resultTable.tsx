@@ -2,7 +2,7 @@ import React from 'react';
 import {  Table } from 'semantic-ui-react'
 
 
-export class TableList extends React.Component {
+export class ResultTable extends React.Component {
     render() {
         return (
             <Table color={'teal'} >
@@ -18,4 +18,4 @@ export class TableList extends React.Component {
     }
 }
 
-export default TableList;
+export default ResultTable;
