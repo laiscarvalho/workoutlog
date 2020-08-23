@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Dropdown, Form, Button } from 'semantic-ui-react';
+import { Dropdown, Form, Button, Message } from 'semantic-ui-react';
 import WorkoutStore from './store';
 import { inject, observer } from 'mobx-react';
 import ReactDatePicker from 'react-datepicker';
@@ -12,15 +12,26 @@ import "react-datepicker/dist/react-datepicker.css";
 export class Filter extends React.Component<{ workout: WorkoutStore }> {
 
     render() {
-        const { exerciseList, handleDate, exerciseDate } = this.props.workout
+        const { exerciseList, handleDate, exerciseDate, handleForm, AddWorkout, exercise, handleExerciseList } = this.props.workout
         return (
-           <>
+            <Message info>
                 <Form >
                     <Form.Group>
-                        <Form.Input width='3' label='Tempo' />
+                        <Form.Input width='3' label='Tempo' name='time' onChange={handleForm} id='time' />
                         <Form.Field>
-                            <label> Exercicio</label>
-                            <Dropdown placeholder='State' search selection options={exerciseList} width={1} />
+                            <label>Exercicio</label>
+                            <Dropdown placeholder='Selecione...'
+                                search={true}
+                                selection={true}
+                                label='Exercicio:'
+                                required={true}
+                                onChange={handleExerciseList}
+                                options={exerciseList}
+                                value={exercise}
+                                name='exerciseList'
+                                id='exerciseList'
+                            />
+
                         </Form.Field>
                         <Form.Field>
                             <label>Data:</label>
@@ -36,9 +47,9 @@ export class Filter extends React.Component<{ workout: WorkoutStore }> {
                         </Form.Field>
                     </Form.Group>
                 </Form>
-                <Button size='tiny' color={'blue'}>Buscar</Button>
-                <Button size='tiny' color={'green'}>Adicionar</Button>
-       </>
+                <Button size='tiny' color={'blue'} >Buscar</Button>
+                <Button size='tiny' color={'green'} onClick={() => AddWorkout()} >Adicionar</Button>
+            </Message>
         )
     }
 }

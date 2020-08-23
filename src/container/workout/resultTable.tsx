@@ -1,0 +1,38 @@
+import React from 'react';
+import { Table } from 'semantic-ui-react'
+import WorkoutStore from './store';
+import { inject, observer } from 'mobx-react';
+import moment from 'moment';
+
+@inject('workout')
+@observer
+export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
+  render() {
+    const { exerciseListTable } = this.props.workout
+    return (
+      <Table color={'teal'} >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Exercicio</Table.HeaderCell>
+            <Table.HeaderCell>Tempo</Table.HeaderCell>
+            <Table.HeaderCell>Data</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {exerciseListTable.map((item, index) => (
+            <>
+              <Table.Row key={index} >
+                <Table.Cell>{item.exercise}</Table.Cell>
+                <Table.Cell>{item.time}</Table.Cell>
+                <Table.Cell>{moment(item.exerciseDate).format('DD/MM/YYYY')}</Table.Cell>
+              </Table.Row>
+            </>))}
+        </Table.Body>
+        <Table.Footer >
+        </Table.Footer>
+      </Table>
+    )
+  }
+}
+
+export default ResultTable;

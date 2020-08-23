@@ -7,9 +7,7 @@ import WorkoutStore from './container/workout/store';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Workout workout={new WorkoutStore()} />
-  </React.StrictMode>,
+    <Workout workout={new WorkoutStore()} />,
   document.getElementById('root')
 );
 
