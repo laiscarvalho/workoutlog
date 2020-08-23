@@ -3,9 +3,12 @@ import { Container, Header, Icon, Divider } from 'semantic-ui-react';
 import MainMenu from '../../components/mainMenu';
 import { ResultTable } from '../../components/resultTable';
 import { Filter } from './filter';
+import WorkoutStore from './store';
+import { inject, observer } from 'mobx-react';
 
-
-export class Workout extends React.Component {
+@inject('workout')
+@observer
+export class Workout extends React.Component <{ workout: WorkoutStore }> {
     render() {
         return (
             <>
@@ -15,7 +18,7 @@ export class Workout extends React.Component {
                         <Icon name='trophy' circular />
                         <Header.Content>Workout Log</Header.Content>
                     </Header>
-                    <Filter />
+                    <Filter workout={this.props.workout} />
                     <Divider />
                     <ResultTable />
                 </Container>
