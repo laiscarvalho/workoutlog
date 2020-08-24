@@ -21,6 +21,8 @@ export default class WorkoutStore {
 
     @observable exerciseListTableCopy: any[] = [];
 
+    @observable countExercise = 0;
+
 
     @action handleDate = (date: Date | null) => {
         this.exerciseDate = date
@@ -28,7 +30,6 @@ export default class WorkoutStore {
 
     @action handleForm = async (event: any, subevent?: any) => {
         const { id, value } = subevent || event.target;
-        console.log(id, value)
         this[id] = value;
     };
 
@@ -38,41 +39,45 @@ export default class WorkoutStore {
 
     @action AddWorkout = async () => {
         const { time, exercise, exerciseDate } = this
-        const t = this.exerciseListTable.length
-        this.exerciseListTable.push({ id: t, time: time, exercise: exercise, exerciseDate: exerciseDate })
-        this.exerciseListTableCopy = this.exerciseListTable
+        this.countExercise = this.countExercise + 1
+        this.exerciseListTable.push({ id: this.countExercise, time: time, exercise: exercise, exerciseDate: exerciseDate })
+        this.updateWorkout({ id: this.countExercise, time, exercise, exerciseDate }, 'add')
     }
 
-    @action removeWorkout = async (index: any) => {
-        this.exerciseListTable.indexOf(index);
-        if (index > -1) {
-            this.exerciseListTable.splice(index, 1);
-        }
+    @action removeWorkout = async (item: any) => {
+        const rmWorkout = this.exerciseListTable.splice(this.exerciseListTable.findIndex(a => a.id === item), 1)
+        this.updateWorkout(rmWorkout, 'remove')
     }
 
     @action filterWorkout = async () => {
-        const { exercise, time, exerciseDate } = this
-        
-        this.exerciseListTable.filter((t) => {
-            if (t.exercise === exercise) {
-                return t
-            } else
+        const { exercise, time } = this
+        if (exercise || time) {
+            this.exerciseListTable = this.exerciseListTable.filter((t) => {
+                if (t.exercise === exercise) {
+                    return t
+                }
                 if (t.time === time) {
                     return t
-                } else
-                    if (t.exerciseDate === exercise) {
-                        return t
-                    } else
-                        if (t.exerciseDate === exerciseDate && t.time === time && t.exercise) {
-                            return t
-                        }
-            return
-        })
+                }
+
+            })
+        }
+        else this.updateWorkout()
+
+
     }
 
 
-
-
+    @action updateWorkout = async (workout?: any, type?: string) => {
+        if (type === 'add') {
+            return this.exerciseListTableCopy.push(workout);
+        }
+        if (type === 'remove') {
+            return this.exerciseListTableCopy.splice(this.exerciseListTableCopy.findIndex(a => a.id === workout.id), 1)
+        }
+        this.exerciseListTable = [];
+        this.exerciseListTable = this.exerciseListTableCopy
+    }
 }
 
 const workout = new WorkoutStore();
