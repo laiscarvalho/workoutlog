@@ -5,14 +5,12 @@ import { inject, observer } from 'mobx-react';
 import ReactDatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-
-
 @inject('workout')
 @observer
 export class Filter extends React.Component<{ workout: WorkoutStore }> {
 
     render() {
-        const { exerciseList, handleDate, exerciseDate, handleForm, AddWorkout, exercise, handleExerciseList } = this.props.workout
+        const { exerciseList, handleDate, exerciseDate, handleForm, AddWorkout, exercise, handleExerciseList, filterWorkout } = this.props.workout
         return (
             <Message info>
                 <Form >
@@ -47,7 +45,7 @@ export class Filter extends React.Component<{ workout: WorkoutStore }> {
                         </Form.Field>
                     </Form.Group>
                 </Form>
-                <Button size='tiny' color={'blue'} >Buscar</Button>
+                <Button size='tiny' color={'blue'} onClick={() => filterWorkout()} >Buscar</Button>
                 <Button size='tiny' color={'green'} onClick={() => AddWorkout()} >Adicionar</Button>
             </Message>
         )
