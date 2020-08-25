@@ -5,8 +5,12 @@ import 'semantic-ui-css/semantic.min.css'
 import { Workout } from './container/workout';
 import WorkoutStore from './container/workout/store';
 import * as Sentry from "@sentry/react";
+import { Integrations } from '@sentry/react';
 
-Sentry.init({ dsn: "https://0eb756fab1464bfaade4215128da5d7d@o438532.ingest.sentry.io/5403430" });
+Sentry.init({
+  release: "workoutlog-frontend@0.1.0", dsn: "https://0eb756fab1464bfaade4215128da5d7d@o438532.ingest.sentry.io/5403430", 
+  tracesSampleRate: 1.0,
+});
 
 ReactDOM.render(
   <Sentry.ErrorBoundary fallback={"An error has occured"}>

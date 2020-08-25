@@ -11,18 +11,18 @@ import { inject, observer } from 'mobx-react';
 export class Workout extends React.Component<{ workout: WorkoutStore }> {
     render() {
         const { workout } = this.props
-        return (          
-           <>
+        return (
+            <>
                 <MainMenu />
                 <Container>
-                <Segment padded>
-                    <Header as='h2' icon textAlign='center'>
-                        <Icon name='trophy' circular />
-                        <Header.Content>Workout Log</Header.Content>
-                    </Header>
-                    <Filter workout={this.props.workout} />
-                    <Divider />
-                    <ResultTable workout={workout} />
+                    <Segment padded>
+                        <Header as='h2' icon textAlign='center'>
+                            <Icon name='trophy' circular />
+                            <Header.Content>Workout Log</Header.Content>
+                        </Header>
+                        <Filter workout={this.props.workout} />
+                        <Divider />
+                        <ResultTable workout={workout} />
                     </Segment>
                 </Container>
             </>
