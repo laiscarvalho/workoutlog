@@ -72,14 +72,27 @@ export default class WorkoutStore {
     }
 
     @action filterWorkout = async () => {
-        const { exercise, time } = this
-        if (exercise || time) {
-            this.exerciseListTable = this.exerciseListTable.filter((t) => {
-                if (t.exercise === exercise) {
-                    return t
+        const { exercise, time, exerciseDate } = this
+        console.log(moment(exerciseDate).format('DD/MM/YYYY'), 'drionk')
+        if (time > 0 && exercise != null && exerciseDate === null) {
+            Swal.fire({
+                title: 'Atenção!',
+                text: 'A filtro de busca é realizado individualmente',
+                icon: 'warning',
+                confirmButtonText: 'Fechar'
+            })
+            return
+        }
+        if (exercise || time || exerciseDate) {
+            this.exerciseListTable = this.exerciseListTable.filter((filter) => {
+                if (filter.exercise === exercise) {
+                    return filter
                 }
-                if (t.time === time) {
-                    return t
+                if (filter.time === time) {
+                    return filter
+                }
+                if (filter.exerciseDate === exerciseDate) {
+                    return filter
                 }
             })
         }

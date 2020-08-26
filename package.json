@@ -58,8 +58,5 @@
     "hooks": {
       "pre-commit": "npm run build && npm run lint"
     }
-  },
-  "devDependencies": {
-    "react-test-renderer": "^15.6.2"
   }
 }

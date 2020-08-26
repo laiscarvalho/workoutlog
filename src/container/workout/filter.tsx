@@ -1,9 +1,10 @@
 import React from 'react';
-import { Dropdown, Form, Button,  Message } from 'semantic-ui-react';
+import { Dropdown, Form, Button,  Message, Popup, Icon } from 'semantic-ui-react';
 import WorkoutStore from './store';
 import { inject, observer } from 'mobx-react';
 import ReactDatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+
 
 @inject('workout')
 @observer
@@ -43,6 +44,7 @@ export class Filter extends React.Component<{ workout: WorkoutStore }> {
                                 timeCaption='time'
                             />
                         </Form.Field>
+                        <Popup  content='O filtro de busca é realizado individualmente por exercicio, tempo ou data'  position='left center' trigger={<Icon style={{ position: 'relative',  left: '10%', top: 0 }} circular={true} name='question circle' />} />
                     </Form.Group>
                 </Form>
                 <Button size='tiny' color={'blue'} onClick={() => filterWorkout()} >Buscar</Button>
