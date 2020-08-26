@@ -1,8 +1,9 @@
 import React from 'react';
-import { Table, Button, Icon } from 'semantic-ui-react'
+import { Table, Button, Icon, Label } from 'semantic-ui-react'
 import WorkoutStore from './store';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
+import '../../components/index.scss';
 
 @inject('workout')
 @observer
@@ -11,8 +12,8 @@ export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
   render() {
     const { exerciseListTable, removeWorkout } = this.props.workout
     return (
-      <Table color={'blue'} >
-        <Table.Header>
+      <Table color={'green'}  className="table">
+        <Table.Header textAlign={'center'}>
           <Table.Row>
             <Table.HeaderCell>ID</Table.HeaderCell>
             <Table.HeaderCell>Exercicio</Table.HeaderCell>
@@ -21,7 +22,7 @@ export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
             <Table.HeaderCell>Remover</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-        <Table.Body>
+        <Table.Body textAlign={'center'}>
           {exerciseListTable.map((item, index) => (
             <Table.Row key={index} >
               <Table.Cell>{item.id}</Table.Cell>
@@ -34,8 +35,10 @@ export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
               </Table.Cell>
             </Table.Row>
           ))}
+        
         </Table.Body>
-        <Table.Footer >
+        <Table.Footer fullWidth >
+        <Label style={{ position: 'relative', right: 0, left: '403%', top: 0 }} as='a' color='teal' ribbon='right'>tabela vazia</Label>       
         </Table.Footer>
       </Table>
     )

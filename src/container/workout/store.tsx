@@ -1,6 +1,7 @@
-
 import { observable, action } from 'mobx';
 import moment from 'moment-timezone';
+import Swal from 'sweetalert2';
+
 
 
 export default class WorkoutStore {
@@ -14,7 +15,7 @@ export default class WorkoutStore {
     ];
 
     @observable time = 0;
-    @observable exercise = ''
+    @observable exercise = 0
 
     @observable exerciseDate: moment.Moment | any = null;
     @observable exerciseListTable: any[] = [];
@@ -39,14 +40,34 @@ export default class WorkoutStore {
 
     @action AddWorkout = async () => {
         const { time, exercise, exerciseDate } = this
-        this.countExercise = this.countExercise + 1
-        this.exerciseListTable.push({ id: this.countExercise, time: time, exercise: exercise, exerciseDate: exerciseDate })
-        this.updateWorkout({ id: this.countExercise, time, exercise, exerciseDate }, 'add')
+        if (time <= 0 || exercise <= 0 || exerciseDate === null) {
+            Swal.fire({
+                title: 'Atenção!',
+                text: 'Valide o preenchimento correto dos campos',
+                icon: 'warning',
+                confirmButtonText: 'Fechar'
+            })
+            return
+        } else {
+            this.countExercise = this.countExercise + 1
+            this.exerciseListTable.push({ id: this.countExercise, time: time, exercise: exercise, exerciseDate: exerciseDate })
+            this.updateWorkout({ id: this.countExercise, time, exercise, exerciseDate }, 'add')
+        }
     }
 
     @action removeWorkout = async (item: any) => {
-        const rmWorkout = this.exerciseListTable.splice(this.exerciseListTable.findIndex(a => a.id === item), 1)
-        this.updateWorkout(rmWorkout, 'remove')
+        Swal.fire({
+            title: 'Atenção!',
+            text: 'Deseja deletar o registro?',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            showLoaderOnConfirm: true,
+        }).then((result) => {
+            if (result.value) {
+                const rmWorkout = this.exerciseListTable.splice(this.exerciseListTable.findIndex(a => a.id === item), 1)
+                this.updateWorkout(rmWorkout, 'remove')
+            }
+        })
     }
 
     @action filterWorkout = async () => {
@@ -63,8 +84,6 @@ export default class WorkoutStore {
             })
         }
         else this.updateWorkout()
-
-
     }
 
 
