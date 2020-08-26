@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Icon, Divider, Segment } from 'semantic-ui-react';
+import { Container, Divider, Segment } from 'semantic-ui-react';
 import MainMenu from '../../components/mainMenu';
 import { ResultTable } from './resultTable';
 import { Filter } from './filter';
@@ -18,12 +18,12 @@ export class Workout extends React.Component<{ workout: WorkoutStore }> {
             <>
                 <MainMenu />
                 <Container >
-                    <Segment padded >    
-                    <div className="background">
-                    <HeaderWorkout />                   
-                        <Filter workout={this.props.workout} />
-                        <Divider />
-                        <ResultTable workout={workout} />
+                    <Segment padded >
+                        <div className="background">
+                            <HeaderWorkout />
+                            <Filter workout={this.props.workout} />
+                            <Divider />
+                            <ResultTable workout={workout} />
                         </div>
                     </Segment>
                 </Container>

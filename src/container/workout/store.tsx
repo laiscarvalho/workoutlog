@@ -22,6 +22,8 @@ export default class WorkoutStore {
     @observable exerciseListTableCopy: any[] = [];
 
     @observable countExercise = 0;
+    @observable countTime = 0
+
 
 
     @action handleDate = (date: Date | null) => {
@@ -79,7 +81,6 @@ export default class WorkoutStore {
                 if (t.time === time) {
                     return t
                 }
-
             })
         }
         else this.updateWorkout()
@@ -87,15 +88,20 @@ export default class WorkoutStore {
 
     @action updateWorkout = async (workout?: any, type?: string) => {
         if (type === 'add') {
+            this.sumTimeWorkout()
             return this.exerciseListTableCopy.push(workout);
         }
         if (type === 'remove') {
+            this.sumTimeWorkout()
             return this.exerciseListTableCopy.splice(this.exerciseListTableCopy.findIndex(a => a.id === workout.id), 1)
         }
         this.exerciseListTable = [];
         this.exerciseListTable = this.exerciseListTableCopy
     }
-}
 
+    @action sumTimeWorkout = async () => {
+        this.countTime = this.exerciseListTable.reduce((sum, item) => { return sum + Number(item.time) }, 0)
+    }
+}
 const workout = new WorkoutStore();
 export { workout };

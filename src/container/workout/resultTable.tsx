@@ -9,7 +9,7 @@ import moment from 'moment';
 export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
 
   render() {
-    const { exerciseListTable, removeWorkout } = this.props.workout
+    const { exerciseListTable, removeWorkout, countTime } = this.props.workout
     return (
       <>
         <Table color={'green'}>
@@ -36,8 +36,11 @@ export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
               </Table.Row>
             ))}
           </Table.Body>
+          <Table.Footer>
+            {exerciseListTable.length === 0 ? <Label style={{ position: 'relative', right: 0, left: '390%', top: 0 }} as='a' color='teal' ribbon='right'>Sem registro</Label> : []}
+          </Table.Footer>
         </Table>
-        {exerciseListTable.length === 0 ? <Label style={{ position: 'relative', right: 0, left: '390%', top: 0 }} as='a' color='teal' ribbon='right'>Sem registro</Label> : []}
+        <Label basic color={'green'}><Icon fitted={true} name='trophy' />Quantidade de horas {countTime}</Label>
       </>
     )
   }

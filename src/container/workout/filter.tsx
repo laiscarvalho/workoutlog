@@ -5,8 +5,6 @@ import { inject, observer } from 'mobx-react';
 import ReactDatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-
-
 @inject('workout')
 @observer
 export class Filter extends React.Component<{ workout: WorkoutStore }> {
