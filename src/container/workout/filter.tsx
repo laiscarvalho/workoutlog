@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Form, Button, Segment } from 'semantic-ui-react';
+import { Dropdown, Form, Button,  Message } from 'semantic-ui-react';
 import WorkoutStore from './store';
 import { inject, observer } from 'mobx-react';
 import ReactDatePicker from 'react-datepicker';
@@ -13,10 +13,10 @@ export class Filter extends React.Component<{ workout: WorkoutStore }> {
     render() {
         const { exerciseList, handleDate, exerciseDate, handleForm, AddWorkout, exercise, handleExerciseList, filterWorkout } = this.props.workout
         return (
-            <Segment  >
+            <Message success  >
                 <Form >
                     <Form.Group>
-                        <Form.Input width='3' label='Tempo' name='time' onChange={handleForm} id='time' />
+                        <Form.Input type={'number'} width='3' label='Tempo' name='time' onChange={handleForm} id='time' />
                         <Form.Field>
                             <label>Exercicio</label>
                             <Dropdown placeholder='Selecione...'
@@ -49,7 +49,7 @@ export class Filter extends React.Component<{ workout: WorkoutStore }> {
                 </Form>
                 <Button size='tiny' color={'blue'} onClick={() => filterWorkout()} >Buscar</Button>
                 <Button size='tiny' color={'green'} onClick={() => AddWorkout()} >Adicionar</Button>
-            </Segment>
+            </Message>
         )
     }
 }

@@ -15,11 +15,10 @@ export default class WorkoutStore {
     ];
 
     @observable time = 0;
-    @observable exercise = 0
-
+    @observable exercise = ''
     @observable exerciseDate: moment.Moment | any = null;
-    @observable exerciseListTable: any[] = [];
 
+    @observable exerciseListTable: any[] = [];
     @observable exerciseListTableCopy: any[] = [];
 
     @observable countExercise = 0;
@@ -40,7 +39,7 @@ export default class WorkoutStore {
 
     @action AddWorkout = async () => {
         const { time, exercise, exerciseDate } = this
-        if (time <= 0 || exercise <= 0 || exerciseDate === null) {
+        if (time <= 0 || exercise === null || exerciseDate === null) {
             Swal.fire({
                 title: 'Atenção!',
                 text: 'Valide o preenchimento correto dos campos',
@@ -85,7 +84,6 @@ export default class WorkoutStore {
         }
         else this.updateWorkout()
     }
-
 
     @action updateWorkout = async (workout?: any, type?: string) => {
         if (type === 'add') {

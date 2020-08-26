@@ -14,6 +14,8 @@
     "@types/react": "^16.9.0",
     "@types/react-datepicker": "^2.3.0",
     "@types/react-dom": "^16.9.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "husky": "^4.2.5",
     "mobx": "^5.15.6",
     "mobx-react": "^6.2.5",
@@ -32,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --updateSnapshot",
     "eject": "react-scripts eject",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix"
@@ -56,5 +58,8 @@
     "hooks": {
       "pre-commit": "npm run build && npm run lint"
     }
+  },
+  "devDependencies": {
+    "react-test-renderer": "^15.6.2"
   }
 }
