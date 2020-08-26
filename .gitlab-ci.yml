@@ -1,0 +1,23 @@
+image: node:lts
+
+cache:
+  key: node-modules
+  paths:
+    - node_modules
+
+variables:
+  APP_NAME: workoutlog-frontend
+  
+  TZ: "/usr/share/zoneinfo/America/Sao_Paulo"
+
+stages:
+  - test
+build:
+  stage: test
+  script:
+    - npm install
+    - yarn test:update
+  coverage: '/(\d+.\d+)% \(\d+\/\d+\)/'
+  artifacts:
+      paths:
+      - "./coverage/lcov.info"
