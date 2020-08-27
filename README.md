@@ -1,16 +1,15 @@
 # WorkoutLog
 
-###Build Status
-
-```
-https://gitlab.com/laiscarvalho/workoutlog/-/pipelines/182484429
-
-```
-
 
  ![gif](src/assests/images/workoutLog.gif)
 
 
+### Build Status
+
+```
+https://gitlab.com/laiscarvalho/workoutlog/-/pipelines
+
+```
 
 WorktoutLog é uma page especializada em registrar, somar e exibir as atividade espotivas cadastradas.
 
