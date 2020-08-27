@@ -1,6 +1,11 @@
 # WorkoutLog
-[[Build Status](https://gitlab.com/laiscarvalho/workoutlog/-/pipelines/182484429)](https://gitlab.com/laiscarvalho/workoutlog)
 
+###Build Status
+
+```
+https://gitlab.com/laiscarvalho/workoutlog/-/pipelines/182484429
+
+```
 
 
  ![gif](src/assests/images/workoutLog.gif)
@@ -28,6 +33,7 @@ o WorkoutLog usa uma série de projetos de código aberto para funcionar correta
 
 ### Estrutura de pastas
 
+```
 ├── ./.gitignore
 ├── ./.gitlab-ci.yml
 ├── ./jest.config.js
@@ -64,7 +70,7 @@ o WorkoutLog usa uma série de projetos de código aberto para funcionar correta
 ├── ./tsconfig.json
 └── ./tslint.json
 
-
+```
 
 ### Requisitos
 
