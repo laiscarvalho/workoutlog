@@ -1,15 +1,12 @@
 # WorkoutLog
+```
+[![Build Status](https://github.com/laiscarvalho/workoutlog/workflows/workoutlog%20CI/badge.svg)](https://github.com/laiscarvalho/workoutlog/actions?query=workflow%3A%22workoutlog+CI%22)
+
+```
 
 
  ![gif](src/assests/images/workoutLog.gif)
 
-
-### Build Status
-
-```
-https://gitlab.com/laiscarvalho/workoutlog/-/pipelines
-
-```
 
 WorktoutLog é uma page especializada em registrar, somar e exibir as atividade espotivas cadastradas.
 
@@ -78,8 +75,7 @@ o WorkoutLog usa uma série de projetos de código aberto para funcionar correta
 * NPM 6.14.4^
 
 
-
-### Execução da aplicação
+### Instalação
 
 Baixe o repositorio no gitHub
 ```
@@ -88,7 +84,7 @@ git clone https://github.com/laiscarvalho/workoutlog
 
 Entre na pasta do projeto 
 ```
-cd workoutlog
+cd ./workoutlog
 
 ```
 
@@ -97,21 +93,26 @@ Baixe os pacotes
 npm install
 ```
 
-E finalmente vamos colocar a aplicaçao para rodar
+
+### Execução da aplicação
+
+Para iniciar a aplicação, executar o comando abaixo. A aplicação será iniciada na url: http://localhost:3000/
+
 ```
 npm run start
 ```
 
 ### Execução de testes
-Primeiro precisamos estar com os pacotes corretos, caso necessario baixe novamente
-```
-npm install
-```
 
-após a instalação rodar o comando de execução de testes
+Para rodar os testes da aplicação rodar o comando abaixo
+
 ```
 npm run test
 ```
 
 ### Monitoramento de erros
-Foi utilizado o sentry que é uma aplicação open source para logar erros de aplicações e agregar informações a eles
+Foi utilizado o sentry que é uma aplicação open source para logar erros de aplicações e agregar informações a eles.
+
+```
+https://sentry.io/organizations/lais-carvalho/issues/?project=5403430
+```
