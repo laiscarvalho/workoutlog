@@ -1,8 +1,8 @@
 # WorkoutLog
-```
+
 [![Build Status](https://github.com/laiscarvalho/workoutlog/workflows/workoutlog%20CI/badge.svg)](https://github.com/laiscarvalho/workoutlog/actions?query=workflow%3A%22workoutlog+CI%22)
 
-```
+
 
 
  ![gif](src/assests/images/workoutLog.gif)
