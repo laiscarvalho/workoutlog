@@ -1,5 +1,5 @@
 # WorkoutLog
-[![Build Status](https://gitlab.com/laiscarvalho/workoutlog/-/pipelines/182484429)](https://gitlab.com/laiscarvalho/workoutlog)
+[[Build Status](https://gitlab.com/laiscarvalho/workoutlog/-/pipelines/182484429)](https://gitlab.com/laiscarvalho/workoutlog)
 
 
 
@@ -25,6 +25,45 @@ o WorkoutLog usa uma série de projetos de código aberto para funcionar correta
 * [Semantic-UI] - Semantic é uma biblioteca de componentes de interface do usuário (UI) implementada usando um conjunto de especificações baseadas na linguagem natural.
 
 * [Typescript] - TypeScript é uma linguagem superset do ECMAScript 6 que, por sua vez, é um superset do ECMAScript 5, usada como base o JavaScript.
+
+### Estrutura de pastas
+
+├── ./.gitignore
+├── ./.gitlab-ci.yml
+├── ./jest.config.js
+├── ./package.json
+├── ./public
+│   ├── ./public/index.html
+│   ├── ./public/manifest.json
+│   └── ./public/robots.txt
+├── ./README.md
+├── ./src
+│   ├── ./src/App.test.tsx
+│   ├── ./src/assests
+│   │   └── ./src/assests/images
+│   │       └── ./src/assests/images/workoutLog.gif
+│   ├── ./src/components
+│   │   ├── ./src/components/header.tsx
+│   │   ├── ./src/components/index.scss
+│   │   └── ./src/components/mainMenu.tsx
+│   ├── ./src/container
+│   │   └── ./src/container/workout
+│   │       ├── ./src/container/workout/filter.tsx
+│   │       ├── ./src/container/workout/index.tsx
+│   │       ├── ./src/container/workout/resultTable.tsx
+│   │       └── ./src/container/workout/store.tsx
+│   ├── ./src/index.tsx
+│   ├── ./src/react-app-env.d.ts
+│   ├── ./src/serviceWorker.ts
+│   ├── ./src/setupTests.ts
+│   └── ./src/test
+│       ├── ./src/test/component.test.tsx
+│       ├── ./src/test/__snapshots__
+│       │   └── ./src/test/__snapshots__/component.test.tsx.snap
+│       └── ./src/test/store.test.tsx
+├── ./tsconfig.json
+└── ./tslint.json
+
 
 
 ### Requisitos
