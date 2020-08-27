@@ -7,9 +7,7 @@ import ResultTable from '../container/workout/resultTable';
 import { shallow } from 'enzyme';
 import { Workout } from '../container/workout';
 
-
-
-const store = new WorkoutStore()
+const store = new WorkoutStore();
 
 test('renders main menu', () => {
   const wrapper = shallow(<MainMenu />);
@@ -29,17 +27,11 @@ test('renders filter', () => {
 test('renders table', () => {
   const wrapper = shallow(<ResultTable workout={store} />);
   expect(wrapper).toMatchSnapshot();
-  
+
 });
 
 test('renders Workout', () => {
   const wrapper = shallow(<Workout workout={store} />);
   expect(wrapper).toMatchSnapshot();
-  
+
 });
-
-
-
-
-
-

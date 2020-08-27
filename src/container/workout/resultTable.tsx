@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button, Icon, Label } from 'semantic-ui-react'
+import { Table, Button, Icon, Label } from 'semantic-ui-react';
 import WorkoutStore from './store';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
@@ -9,7 +9,7 @@ import moment from 'moment';
 export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
 
   render() {
-    const { exerciseListTable, removeWorkout, countTime } = this.props.workout
+    const { exerciseListTable, removeWorkout, countTime } = this.props.workout;
     return (
       <>
         <Table color={'green'}>
@@ -30,7 +30,7 @@ export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
                 <Table.Cell>{item.time}</Table.Cell>
                 <Table.Cell>{moment(item.exerciseDate).format('DD/MM/YYYY')}</Table.Cell>
                 <Table.Cell>
-                  <Button basic color='red' onClick={() => removeWorkout(item.id)}><Icon fitted={true} name='trash' />
+                  <Button basic={true} color='red' onClick={() => removeWorkout(item.id)}><Icon fitted={true} name='trash' />
                   </Button>
                 </Table.Cell>
               </Table.Row>
@@ -40,9 +40,9 @@ export class ResultTable extends React.Component<{ workout: WorkoutStore }> {
             {exerciseListTable.length === 0 ? <Label style={{ position: 'relative', right: 0, left: '390%', top: 0 }} as='a' color='teal' ribbon='right'>Sem registro</Label> : []}
           </Table.Footer>
         </Table>
-        <Label basic color={'green'}><Icon fitted={true} name='trophy' />Quantidade de horas {countTime}</Label>
+        <Label basic={true} color={'green'}><Icon fitted={true} name='trophy' />Quantidade de horas {countTime}</Label>
       </>
-    )
+    );
   }
 }
 

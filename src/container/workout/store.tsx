@@ -2,8 +2,6 @@ import { observable, action } from 'mobx';
 import moment from 'moment-timezone';
 import Swal from 'sweetalert2';
 
-
-
 export default class WorkoutStore {
     @observable exerciseList = [
         { key: 0, text: 'Selecione', value: '' },
@@ -23,8 +21,6 @@ export default class WorkoutStore {
 
     @observable countExercise = 0;
     @observable countTime = 0;
-
-
 
     @action handleDate = (date: Date | null) => {
         this.exerciseDate = date;
@@ -51,7 +47,7 @@ export default class WorkoutStore {
             return;
         } else {
             this.countExercise = this.countExercise + 1;
-            this.exerciseListTable.push({ id: this.countExercise, time: time, exercise: exercise, exerciseDate: exerciseDate });
+            this.exerciseListTable.push({ id: this.countExercise, time, exercise, exerciseDate });
             this.updateWorkout({ id: this.countExercise, time, exercise, exerciseDate }, 'add');
         }
     }
@@ -68,12 +64,12 @@ export default class WorkoutStore {
                 const rmWorkout = this.exerciseListTable.splice(this.exerciseListTable.findIndex(a => a.id === item), 1);
                 this.updateWorkout(rmWorkout, 'remove');
             }
-        })
+        });
     }
 
     @action filterWorkout = async () => {
         const { exercise, time, exerciseDate } = this;
-        if (time > 0 && exercise != null && exerciseDate != null) {
+        if (time > 0 && exercise !== null && exerciseDate !== null) {
             Swal.fire({
                 title: 'Atenção!',
                 text: 'O filtro de busca é realizado individualmente',
@@ -82,7 +78,7 @@ export default class WorkoutStore {
             });
             return;
         }
-        
+
         if (this.exerciseListTableCopy.length === 0) {
             Swal.fire({
                 title: 'Não há registros',
@@ -124,7 +120,7 @@ export default class WorkoutStore {
     }
 
     @action sumTimeWorkout = async () => {
-        this.countTime = this.exerciseListTable.reduce((sum, item) => { return sum + Number(item.time) }, 0);
+        this.countTime = this.exerciseListTable.reduce((sum, item) => { return sum + Number(item.time); }, 0);
     }
 }
 const workout = new WorkoutStore();

@@ -3,16 +3,15 @@ import { Dropdown, Form, Button,  Message, Popup, Icon } from 'semantic-ui-react
 import WorkoutStore from './store';
 import { inject, observer } from 'mobx-react';
 import ReactDatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-
+import 'react-datepicker/dist/react-datepicker.css';
 
 @inject('workout')
 @observer
 export class Filter extends React.Component<{ workout: WorkoutStore }> {
     render() {
-        const { exerciseList, handleDate, exerciseDate, handleForm, addWorkout, exercise, handleExerciseList, filterWorkout } = this.props.workout
+        const { exerciseList, handleDate, exerciseDate, handleForm, addWorkout, exercise, handleExerciseList, filterWorkout } = this.props.workout;
         return (
-            <Message success  >
+            <Message success={true}  >
                 <Form >
                     <Form.Group>
                         <Form.Input type={'number'} width='3' label='Tempo' name='time' onChange={handleForm} id='time' />
@@ -50,7 +49,7 @@ export class Filter extends React.Component<{ workout: WorkoutStore }> {
                 <Button size='tiny' color={'blue'} onClick={() => filterWorkout()} >Buscar</Button>
                 <Button size='tiny' color={'green'} onClick={() => addWorkout()} >Adicionar</Button>
             </Message>
-        )
+        );
     }
 }
 export default Filter;

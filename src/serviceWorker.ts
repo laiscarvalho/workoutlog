@@ -19,12 +19,12 @@ const isLocalhost = Boolean(
         /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
       )
   );
-  
-  type Config = {
+
+  interface Config {
     onSuccess?: (registration: ServiceWorkerRegistration) => void;
     onUpdate?: (registration: ServiceWorkerRegistration) => void;
-  };
-  
+  }
+
   export function register(config?: Config) {
     if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
       // The URL constructor is available in all browsers that support SW.
@@ -38,14 +38,14 @@ const isLocalhost = Boolean(
         // serve assets; see https://github.com/facebook/create-react-app/issues/2374
         return;
       }
-  
+
       window.addEventListener('load', () => {
         const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-  
+
         if (isLocalhost) {
           // This is running on localhost. Let's check if a service worker still exists or not.
           checkValidServiceWorker(swUrl, config);
-  
+
           // Add some additional logging to localhost, pointing developers to the
           // service worker/PWA documentation.
           navigator.serviceWorker.ready.then(() => {
@@ -61,7 +61,7 @@ const isLocalhost = Boolean(
       });
     }
   }
-  
+
   function registerValidSW(swUrl: string, config?: Config) {
     navigator.serviceWorker
       .register(swUrl)
@@ -81,7 +81,7 @@ const isLocalhost = Boolean(
                   'New content is available and will be used when all ' +
                     'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
                 );
-  
+
                 // Execute callback
                 if (config && config.onUpdate) {
                   config.onUpdate(registration);
@@ -91,7 +91,7 @@ const isLocalhost = Boolean(
                 // It's the perfect time to display a
                 // "Content is cached for offline use." message.
                 console.log('Content is cached for offline use.');
-  
+
                 // Execute callback
                 if (config && config.onSuccess) {
                   config.onSuccess(registration);
@@ -105,7 +105,7 @@ const isLocalhost = Boolean(
         console.error('Error during service worker registration:', error);
       });
   }
-  
+
   function checkValidServiceWorker(swUrl: string, config?: Config) {
     // Check if the service worker can be found. If it can't reload the page.
     fetch(swUrl, {
@@ -135,7 +135,7 @@ const isLocalhost = Boolean(
         );
       });
   }
-  
+
   export function unregister() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.ready
@@ -147,4 +147,3 @@ const isLocalhost = Boolean(
         });
     }
   }
-  

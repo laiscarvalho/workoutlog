@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min.css';
 import { Workout } from './container/workout';
 import WorkoutStore from './container/workout/store';
-import * as Sentry from "@sentry/react";
+import * as Sentry from '@sentry/react';
+
+// tslint:disable-next-line:no-var-requires
+const pack = require('../package.json');
 
 Sentry.init({
-  release: "workoutlog-frontend@0.1.0", dsn: "https://0eb756fab1464bfaade4215128da5d7d@o438532.ingest.sentry.io/5403430",
+  release: pack.name + '@' + pack.version, dsn: 'https://0eb756fab1464bfaade4215128da5d7d@o438532.ingest.sentry.io/5403430',
   tracesSampleRate: 1.0,
 });
 
 ReactDOM.render(
-  <Sentry.ErrorBoundary fallback={"An error has occured"}>
+  <Sentry.ErrorBoundary fallback={'An error has occured'}>
     <Workout workout={new WorkoutStore()} />
   </Sentry.ErrorBoundary>,
   document.getElementById('root')

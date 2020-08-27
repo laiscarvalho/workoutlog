@@ -6,7 +6,7 @@ cache:
     - node_modules
 
 variables:
-  APP_NAME: workoutlog-frontend
+  APP_NAME: workoutlog
   
   TZ: "/usr/share/zoneinfo/America/Sao_Paulo"
 
@@ -16,7 +16,7 @@ build:
   stage: test
   script:
     - npm install
-    - yarn test:update
+    - npm run test
   coverage: '/(\d+.\d+)% \(\d+\/\d+\)/'
   artifacts:
       paths:
