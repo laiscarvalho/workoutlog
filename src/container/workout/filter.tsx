@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 @observer
 export class Filter extends React.Component<{ workout: WorkoutStore }> {
     render() {
-        const { exerciseList, handleDate, exerciseDate, handleForm, AddWorkout, exercise, handleExerciseList, filterWorkout } = this.props.workout
+        const { exerciseList, handleDate, exerciseDate, handleForm, addWorkout, exercise, handleExerciseList, filterWorkout } = this.props.workout
         return (
             <Message success  >
                 <Form >
@@ -48,7 +48,7 @@ export class Filter extends React.Component<{ workout: WorkoutStore }> {
                     </Form.Group>
                 </Form>
                 <Button size='tiny' color={'blue'} onClick={() => filterWorkout()} >Buscar</Button>
-                <Button size='tiny' color={'green'} onClick={() => AddWorkout()} >Adicionar</Button>
+                <Button size='tiny' color={'green'} onClick={() => addWorkout()} >Adicionar</Button>
             </Message>
         )
     }

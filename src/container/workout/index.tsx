@@ -6,7 +6,6 @@ import { Filter } from './filter';
 import WorkoutStore from './store';
 import { inject, observer } from 'mobx-react';
 import { HeaderWorkout } from '../../components/header';
-import '../../components/index.scss';
 
 
 @inject('workout')
@@ -18,13 +17,11 @@ export class Workout extends React.Component<{ workout: WorkoutStore }> {
             <>
                 <MainMenu />
                 <Container >
-                    <Segment padded >
-                        <div className="background">
+                    <Segment padded >                      
                             <HeaderWorkout />
                             <Filter workout={this.props.workout} />
                             <Divider />
-                            <ResultTable workout={workout} />
-                        </div>
+                            <ResultTable workout={workout} />                        
                     </Segment>
                 </Container>
             </>

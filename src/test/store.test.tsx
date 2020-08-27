@@ -1,23 +1,24 @@
 import WorkoutStore from "../container/workout/store";
+import Swal from "sweetalert2";
 
-describe('Store AddWorkout Test', () => {
+describe('Store addWorkout Test', () => {
     const store = new WorkoutStore()
 
     test('test empt values', () => {
-        store.AddWorkout();
+        store.addWorkout();
         expect(store.countExercise).toBe(0);
         expect(store.exercise).toBe('');
     });
 
     test('test exercise is empty', () => {
-        store.AddWorkout();
+        store.addWorkout();
         store.time = 5
         expect(store.countExercise).toBe(0);
         expect(store.exercise).toBe('');
     });
 
     test('test exerciseDate is empty', () => {
-        store.AddWorkout();
+        store.addWorkout();
         store.exercise = 'bike'
         store.time = 5
         expect(store.exercise).toBe('bike');
@@ -30,11 +31,25 @@ describe('Store AddWorkout Test', () => {
         store.exercise = 'run'
         store.time = 1
         store.exerciseDate = new Date()
-        store.AddWorkout();
+        store.addWorkout();
+        store.time = 3
+        store.addWorkout();       
         expect(store.exercise).toBe('run');
-        expect(store.time).toBe(1)
-        expect(store.exerciseListTable.length).toBe(1)
-        expect(store.countExercise).toBe(1)
+        expect(store.time).toBe(3)
+        expect(store.exerciseListTable.length).toBe(2)
+        expect(store.countExercise).toBe(2)
     });
+
+    test('test filter', () => {   
+        store.time = 1    
+        store.filterWorkout();       
+        expect(store.exerciseListTable.length).toBe(2)
+        expect(store.countExercise).toBe(2)
+    });
+
+    test('test filter', () => {   
+        store.filterWorkout()
+    });
+
 })
 

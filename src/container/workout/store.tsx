@@ -7,27 +7,27 @@ import Swal from 'sweetalert2';
 export default class WorkoutStore {
     @observable exerciseList = [
         { key: 0, text: 'Selecione', value: '' },
-        { key: 1, text: 'Corrida', value: 'run' },
-        { key: 2, text: 'Bicicleta', value: 'bike' },
-        { key: 3, text: 'Natação', value: 'swimming' },
-        { key: 4, text: 'basquete', value: 'basketball' },
-        { key: 5, text: 'Luta', value: 'fight' }
+        { key: 1, text: 'Corrida', value: 'Corrida' },
+        { key: 2, text: 'Bicicleta', value: 'Bicicleta' },
+        { key: 3, text: 'Natação', value: 'Natação' },
+        { key: 4, text: 'Basquete', value: 'Basquete' },
+        { key: 5, text: 'Luta', value: 'Luta' }
     ];
 
     @observable time = 0;
-    @observable exercise = ''
+    @observable exercise = '';
     @observable exerciseDate: moment.Moment | any = null;
 
     @observable exerciseListTable: any[] = [];
     @observable exerciseListTableCopy: any[] = [];
 
     @observable countExercise = 0;
-    @observable countTime = 0
+    @observable countTime = 0;
 
 
 
     @action handleDate = (date: Date | null) => {
-        this.exerciseDate = date
+        this.exerciseDate = date;
     };
 
     @action handleForm = async (event: any, subevent?: any) => {
@@ -39,20 +39,20 @@ export default class WorkoutStore {
         this.exercise = sub.value;
     };
 
-    @action AddWorkout = async () => {
-        const { time, exercise, exerciseDate } = this
+    @action addWorkout = async () => {
+        const { time, exercise, exerciseDate } = this;
         if (time <= 0 || exercise === null || exerciseDate === null) {
             Swal.fire({
                 title: 'Atenção!',
                 text: 'Valide o preenchimento correto dos campos',
                 icon: 'warning',
                 confirmButtonText: 'Fechar'
-            })
-            return
+            });
+            return;
         } else {
-            this.countExercise = this.countExercise + 1
-            this.exerciseListTable.push({ id: this.countExercise, time: time, exercise: exercise, exerciseDate: exerciseDate })
-            this.updateWorkout({ id: this.countExercise, time, exercise, exerciseDate }, 'add')
+            this.countExercise = this.countExercise + 1;
+            this.exerciseListTable.push({ id: this.countExercise, time: time, exercise: exercise, exerciseDate: exerciseDate });
+            this.updateWorkout({ id: this.countExercise, time, exercise, exerciseDate }, 'add');
         }
     }
 
@@ -65,55 +65,66 @@ export default class WorkoutStore {
             showLoaderOnConfirm: true,
         }).then((result) => {
             if (result.value) {
-                const rmWorkout = this.exerciseListTable.splice(this.exerciseListTable.findIndex(a => a.id === item), 1)
-                this.updateWorkout(rmWorkout, 'remove')
+                const rmWorkout = this.exerciseListTable.splice(this.exerciseListTable.findIndex(a => a.id === item), 1);
+                this.updateWorkout(rmWorkout, 'remove');
             }
         })
     }
 
     @action filterWorkout = async () => {
-        const { exercise, time, exerciseDate } = this
-        console.log(moment(exerciseDate).format('DD/MM/YYYY'), 'drionk')
-        if (time > 0 && exercise != null && exerciseDate === null) {
+        const { exercise, time, exerciseDate } = this;
+        if (time > 0 && exercise != null && exerciseDate != null) {
             Swal.fire({
                 title: 'Atenção!',
-                text: 'A filtro de busca é realizado individualmente',
+                text: 'O filtro de busca é realizado individualmente',
                 icon: 'warning',
                 confirmButtonText: 'Fechar'
-            })
-            return
+            });
+            return;
         }
+        
+        if (this.exerciseListTableCopy.length === 0) {
+            Swal.fire({
+                title: 'Não há registros',
+                icon: 'info',
+                confirmButtonText: 'Fechar'
+            });
+            return;
+        }
+
         if (exercise || time || exerciseDate) {
             this.exerciseListTable = this.exerciseListTable.filter((filter) => {
                 if (filter.exercise === exercise) {
-                    return filter
+                    return filter;
                 }
                 if (filter.time === time) {
-                    return filter
+                    return filter;
                 }
                 if (filter.exerciseDate === exerciseDate) {
-                    return filter
+                    return filter;
                 }
-            })
+
+            });
+
         }
-        else this.updateWorkout()
+        else this.updateWorkout();
     }
 
     @action updateWorkout = async (workout?: any, type?: string) => {
         if (type === 'add') {
-            this.sumTimeWorkout()
+            this.sumTimeWorkout();
             return this.exerciseListTableCopy.push(workout);
         }
         if (type === 'remove') {
-            this.sumTimeWorkout()
-            return this.exerciseListTableCopy.splice(this.exerciseListTableCopy.findIndex(a => a.id === workout.id), 1)
+            this.sumTimeWorkout();
+            return this.exerciseListTableCopy.splice(this.exerciseListTableCopy.findIndex(a => a.id === workout.id), 1);
         }
         this.exerciseListTable = [];
-        this.exerciseListTable = this.exerciseListTableCopy
+        this.exerciseListTable = this.exerciseListTable.concat(this.exerciseListTableCopy);
     }
 
     @action sumTimeWorkout = async () => {
-        this.countTime = this.exerciseListTable.reduce((sum, item) => { return sum + Number(item.time) }, 0)
+        this.countTime = this.exerciseListTable.reduce((sum, item) => { return sum + Number(item.time) }, 0);
     }
 }
 const workout = new WorkoutStore();
